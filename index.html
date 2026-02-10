@@ -1,34 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
+    <meta charset="UTF-8">
     <title>Belajar CSS</title>
+
     <style>
-        input[type=password],
-        input[type=email],
-        select {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            border: 1px solid #eeb8b8;
-            border-radius: 4px;
+        /* reset dasar */
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
 
+        body {
+            background: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        /* kotak login */
         .kotaklogin {
             width: 350px;
             margin: 20px auto;
-            border-radius: 5px;
-            background-color: #d65d48;
             padding: 20px;
+            background-color: #d65d48;
+            border-radius: 8px;
         }
 
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #fff;
+        }
+
+        /* input & select disamakan */
+        input[type=email],
+        input[type=password],
+        select {
+            width: 100%;
+            height: 45px;
+            padding: 0 15px;
+            margin-top: 5px;
+            border: 1px solid #eeb8b8;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: #fff;
+        }
+
+        /* hilangkan style bawaan select */
+        select {
+            appearance: none;
+        }
+
+        /* tombol login */
         input[type=submit] {
             width: 100%;
+            height: 45px;
+            margin-top: 15px;
             background-color: #742f1e;
-            color: rgb(221, 180, 180);
-            padding: 14px;
+            color: #fff;
             border: none;
             border-radius: 4px;
+            font-size: 15px;
             cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #5c2316;
         }
     </style>
 </head>
@@ -39,13 +78,14 @@
 
 <div class="kotaklogin">
     <form onsubmit="login(event)">
-        <label>Email</label>
+        
+        <label for="email">Email</label>
         <input type="email" id="email" placeholder="email..." required>
 
-        <label>Password</label>
+        <label for="password">Password</label>
         <input type="password" id="password" placeholder="password..." required>
 
-        <label>Status</label>
+        <label for="status">Status</label>
         <select id="status">
             <option value="Siswa">Siswa</option>
             <option value="Guru">Guru</option>
@@ -57,18 +97,16 @@
 
 <script>
 function login(event) {
-    event.preventDefault(); // stop reload
+    event.preventDefault();
 
     const email = document.getElementById("email").value;
     const status = document.getElementById("status").value;
 
-    // simpan ke localStorage
     localStorage.setItem("email", email);
     localStorage.setItem("status", status);
 
-    // pindah ke dashboard
     window.location.href = "dashboard.html";
-}   
+}
 </script>
 
 </body>
