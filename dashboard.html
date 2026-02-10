@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+    }
+
+    header {
+      background: #e08e5e;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 22px;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 15px;
+      margin-top: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    button {
+      background: #e08e5e;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  Selamat Datang di Dashboard
+</header>
+
+<div class="container">
+  <div class="card">
+    <h3>Profil</h3>
+    <p>Nama : <span id="nama"></span></p>
+    <p>Status : <span id="status"></span></p>
+  </div>
+
+  <div class="card">
+    <h3>Menu</h3>
+    <ul id="menu"></ul>
+  </div>
+
+  <button onclick="logout()">Logout</button>
+</div>
+
+<script>
+  // ambil data dari login
+  const email = localStorage.getItem("email");
+  const status = localStorage.getItem("status");
+
+  // jika belum login, kembalikan ke login
+  if (!email || !status) {
+    window.location.href = "belajar.html";
+  }
+
+  // tampilkan profil
+  document.getElementById("nama").innerText = email;
+  document.getElementById("status").innerText = status;
+
+  // menu berdasarkan status
+  const menu = document.getElementById("menu");
+
+  if (status === "Siswa") {
+    menu.innerHTML = `
+      <li>Data Siswa</li>
+      <li>Jadwal Pelajaran</li>
+      <li>Pengumuman</li>
+    `;
+  } else if (status === "Guru") {
+    menu.innerHTML = `
+      <li>Data Siswa</li>
+      <li>Input Nilai</li>
+      <li>Jadwal Mengajar</li>
+    `;
+  }
+
+  function logout() {
+    localStorage.clear();
+    window.location.href = "belajar.html";
+  }
+</script>
+
+</body>
+</html>
